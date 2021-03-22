@@ -1,0 +1,14 @@
+class Teacher {
+
+  name = '';
+  surname = '';
+  createdAt = null;
+
+  constructor( name, surname, createdAt ) {
+    this.name       = name;
+    this.surname    = surname;
+    this.createdAt  = createdAt;
+  }
+}
+
+module.exports = Teacher;

@@ -1,0 +1,4 @@
+DBURL_STUDENTS='./db/students.json'
+DBURL_COURSES='./db/courses.json'
+DBURL_TEACHERS='./db/teachers.json'
+

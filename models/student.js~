@@ -1,0 +1,47 @@
+const fs = require('fs');
+const {v4: uuidv4 } = require('uuid');
+
+class Student {
+
+  id = '';
+  name = '';
+  surname = '';
+  age = 0;
+  createdAt = null;
+
+  constructor( name, surname, age, createdAt) {
+    this.id         = uuidv4();
+    this.name       = name;
+    this.surname    = surname;
+    this.age        = age;
+    this.createdAt  = createdAt;
+    this.db         = './db/studentDB.json';
+    this.students   = this.getStudents();
+  }
+
+  create() {
+    const data = {
+      id: this.id,
+      name: this.name,
+      surname: this.surname,
+      age: this.age,
+      createdAt: this.createdAt
+    };
+    this.students.push(data);
+    fs.writeFileSync(this.db, JSON.stringify(this.students));
+  }
+
+
+  getStudents() {
+    if ( !fs.existsSync(this.db) ) return [];
+
+    let data = fs.readFileSync(this.db, {encoding: 'utf-8'});
+    let students = JSON.parse(data);
+
+    return students;
+  }
+
+
+}
+
+module.exports = Student;
